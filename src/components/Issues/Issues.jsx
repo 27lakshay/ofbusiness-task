@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 
-import { fetchIssues } from "../../utils/api";
+import { getIssues } from "../../utils/api";
 
 import Issue from "./Issue/Issue";
 
 import "./issues.css";
 
 const Issues = () => {
-    const [pageOffset, setPageOffset] = useState(0);
+    const [pageOffset, setPageOffset] = useState(1);
     const [issues, setIssues] = useState([]);
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -23,7 +23,9 @@ const Issues = () => {
     ];
 
     useEffect(() => {
-        fetchIssues().then((response) => {
+        getIssues(pageOffset)
+        .then((response) => response.json())
+        .then((response) => {
             let newData = [...issues, ...response];
             setIssues(newData);
             console.log(newData);
@@ -48,20 +50,21 @@ const Issues = () => {
     return (
         <main className="issues-wrapper">
             <div className="issues-head">
-                <ul className="head-options">
-                    <li className="head-option active">
+                <div className="head-options-left">
+                    <span className="head-option active">
                         <i class="fa-solid fa-exclamation"></i>
                         <span className="count">625</span> Open
-                    </li>
-                    <li className="head-option">
+                    </span>
+                    <span className="head-option">
                         <i class="fa-solid fa-check"></i>
                         <span className="count">10,104</span> Closed
-                    </li>
-                    <li className="util-spacer"></li>
+                    </span>
+                </div>
+                <div className="head-options-right">
                     {FILTERS.map((item) => (
-                        <li className="head-option">{item.title}</li>
+                        <span className="head-option">{item.title}</span>
                     ))}
-                </ul>
+                </div>
             </div>
             <div className="issues-body">
                 <ul className="list">

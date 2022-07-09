@@ -12,7 +12,11 @@ const Issue = ({ data }) => {
                 <a className="issue-title">{data.title}</a>
                 <span className="issue-tags">
                     {data?.labels.map((label) => (
-                        <span style={{ backgroundColor: `#${label.color}` }} key={label.id} className="issue-tag text-tag">
+                        <span
+                            style={{ backgroundColor: `#${label.color}` }}
+                            key={label.id}
+                            className="issue-tag text-tag"
+                        >
                             {label.name}
                         </span>
                     ))}
@@ -24,7 +28,7 @@ const Issue = ({ data }) => {
             <div className="issue-right">
                 <span></span>
                 <span></span>
-                <span>{data.comments}</span>
+                <span></span>
             </div>
         </div>
     );

@@ -1,7 +1,6 @@
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji",
-        "Segoe UI Emoji";
+    font-family: "Segoe UI", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding: 0;
@@ -29,6 +28,7 @@ ul {
     --color-light-grey: #f6f8fa;
     --color-grey: #24292f;
     --color-underline: #fd8c73;
+    --color-blue: #0969da;
 }
 .util-spacer {
     width: 100%;
@@ -43,6 +43,6 @@ ul {
     padding: 2px 4px;
 }
 
-.text-tag {
-  
+.fa-solid {
+    font-size: 14px;
 }

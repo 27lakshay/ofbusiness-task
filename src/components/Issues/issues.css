@@ -4,9 +4,13 @@
     border-bottom: 1px solid var(--color-border-default);
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.head-options {
+.head-options-left,
+.head-options-right {
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -26,7 +30,6 @@
     color: var(--color-default);
 }
 
-
 .head-option span {
     margin-right: 0.25rem;
     margin-left: 0.5rem;
@@ -37,3 +40,8 @@
     font-weight: 600;
 }
 
+@media (max-width: 992px) {
+    .head-options-right {
+        display: none;
+    }
+}
