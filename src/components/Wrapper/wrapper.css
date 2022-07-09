@@ -1,0 +1,68 @@
+.wrapper {
+}
+
+.wrapper-tabs {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 2rem;
+    background-color: var(--color-light-grey);
+    border-bottom: 1px solid var(--color-border-default);
+}
+
+.wrapper-tab-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 0px 12px;
+    line-height: 30px;
+    border-radius: 6px;
+    transition: background-color 0.12s ease-out;
+}
+
+.wrapper-tab-button i {
+    color: var(--color-fg-muted);
+}
+
+.wrapper-tab-button:hover {
+    background-color: rgba(208, 215, 222, 0.32);
+}
+
+.wrapper-tab-button.active {
+    font-weight: 600;
+}
+
+.wrapper-tab-button.active::after {
+    position: absolute;
+    right: 50%;
+    bottom: calc(50% - 25px);
+    width: 100%;
+    height: 2px;
+    content: "";
+    background: var(--color-underline);
+    border-radius: 6px;
+    transform: translate(50%, -50%);
+}
+
+.wrapper-tab-button .count {
+    display: inline-block;
+    min-width: 20px;
+    padding: 0 6px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    color: var(--color-fg-default);
+    text-align: center;
+    background-color: rgba(175, 184, 193, 0.2);
+    border-radius: 2em;
+}
+
+.wrapper-tab-component {
+    margin: 2rem 4rem;
+    border: 1px solid var(--color-border-default);
+    border-radius: 6px;
+}
