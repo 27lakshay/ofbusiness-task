@@ -1,7 +1,5 @@
 import "./issue.css";
-{
-    /* <i class="fa-solid fa-message"></i> */
-}
+
 const Issue = ({ data }) => {
     return (
         <div className="issue">

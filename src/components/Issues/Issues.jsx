@@ -6,33 +6,26 @@ import Issue from "./Issue/Issue";
 
 import "./issues.css";
 
+const FILTERS = [
+    { title: "Author" },
+    { title: "Label" },
+    { title: "Projects" },
+    { title: "Milestones" },
+    { title: "Assignee" },
+    { title: "Sort" },
+];
+
 const Issues = () => {
     const [pageOffset, setPageOffset] = useState(1);
     const [issues, setIssues] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
-    const [hasMore, setHasMore] = useState(true);
-
-    const FILTERS = [
-        { title: "Author" },
-        { title: "Label" },
-        { title: "Projects" },
-        { title: "Milestones" },
-        { title: "Assignee" },
-        { title: "Sort" },
-    ];
-
-    useEffect(() => {
-        getIssues(pageOffset)
-        .then((response) => response.json())
-        .then((response) => {
-            let newData = [...issues, ...response];
-            setIssues(newData);
-            console.log(newData);
-        });
-    }, [pageOffset]);
+    const [loading, setLoading] = useState(true);
+    const [errorMessage, setErrorMessage] = useState(null);
+    const [hasMore, setHasMore] = useState(false);
 
     const observer = useRef();
+
+    useEffect(() => fetchIssues(pageOffset), [pageOffset]);
+
     const lastItemRef = useCallback(
         (node) => {
             if (loading) return;
@@ -46,6 +39,22 @@ const Issues = () => {
         },
         [loading, hasMore]
     );
+
+    const fetchIssues = (pageOffset) => {
+        setLoading(true);
+        getIssues(pageOffset)
+            .then((response) => response.json())
+            .then((response) => {
+                let newData = [...issues, ...response];
+                setHasMore(response.length > 0);
+                setIssues(newData);
+                setLoading(false);
+            })
+            .catch((e) => {
+                setErrorMessage("Oops something went wrong! :(");
+                console.error(e);
+            });
+    };
 
     return (
         <main className="issues-wrapper">
@@ -84,6 +93,8 @@ const Issues = () => {
                         }
                     })}
                 </ul>
+                <div>{loading && "Loading..."}</div>
+                <div>{errorMessage && errorMessage}</div>
             </div>
         </main>
     );
