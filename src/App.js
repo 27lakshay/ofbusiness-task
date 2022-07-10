@@ -2,7 +2,6 @@ import React from "react";
 
 import Issues from "./components/Issues/Issues";
 import Wrapper from "./components/Wrapper/Wrapper";
-import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 
 const App = () => {
@@ -12,7 +11,6 @@ const App = () => {
             <Wrapper>
                 <Issues />
             </Wrapper>
-            <Footer />
         </div>
     );
 };
